@@ -92,6 +92,12 @@ set_target_properties(webp PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/libwebp
 )
 
+add_library(tbb STATIC IMPORTED GLOBAL)
+set_target_properties(tbb PROPERTIES
+  IMPORTED_LOCATION ${linux_lib_dir}/libtbb_static.a
+  INTERFACE_INCLUDE_DIRECTORIES ${platform_spec_path}/include/tbb
+)
+
 list(APPEND CC_EXTERNAL_INCLUDES
   ${platform_spec_path}/include
   ${platform_spec_path}/include/v8
@@ -115,4 +121,5 @@ list(APPEND CC_EXTERNAL_LIBS
     crypto
     curl
     webp
+    tbb
 )
